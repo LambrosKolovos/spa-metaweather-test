@@ -1,0 +1,14 @@
+.day {
+	padding-bottom: 10px;
+	color: #073a60;
+}
+
+.max_temp {
+	padding-top: 10px;
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.min_temp {
+	font-size: 15px;
+}

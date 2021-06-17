@@ -1,0 +1,26 @@
+.weatherdata_container {
+	margin-top: 50px;
+}
+
+.weeklydata_container {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+}
+
+.dailystats {
+	display: flex;
+	margin-top: 10px;
+}
+
+.currentdata_container {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 18%;
+	margin-right: 18%;
+}
+
+.city_info {
+	display: block;
+	justify-content: center;
+}

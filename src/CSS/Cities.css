@@ -1,0 +1,24 @@
+.results_container {
+	display: flex;
+	justify-content: center;
+	margin-top: 60px;
+}
+
+.city_card {
+	background: rgba(219, 252, 249, 0.2);
+	margin-left: 30px;
+	padding: 30px;
+	border-radius: 20px;
+	color: #073a60;
+}
+
+.city_card:hover {
+	border: 1.5px solid #073a60;
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.city_name {
+	font-weight: 600;
+	margin-top: 15px;
+}

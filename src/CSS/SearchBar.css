@@ -1,0 +1,11 @@
+.searchfield {
+	margin-top: 30px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	outline: none;
+	border: 1px solid #073a60;
+	width: 20%;
+	background-color: lightcyan;
+	border-radius: 30px;
+}
