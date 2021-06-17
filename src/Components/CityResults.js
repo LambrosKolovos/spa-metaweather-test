@@ -2,14 +2,16 @@ import React from 'react'
 import CityCard from './CityCard.js'
 import '../CSS/Cities.css'
 
-function CityResults() {
+function CityResults({data, onClick}) {
     return (
         <div className='results_container'>
-            <CityCard name ='Sample name' lat={14.31} lon={13.87}/>
-            <CityCard name ='Sample name' lat={14.31} lon={13.87}/>
-            <CityCard name ='Sample name' lat={14.31} lon={13.87}/>
-            <CityCard name ='Sample name' lat={14.31} lon={13.87}/>
-            <CityCard name ='Sample name' lat={14.31} lon={13.87}/>
+            {data.map((idx) => {
+                return <CityCard 
+                        key={idx.woeid}
+                        name={idx.title}
+                        lat={idx.latt_long} 
+                        onClick={onClick}/>
+            })}
         </div>
     )
 }

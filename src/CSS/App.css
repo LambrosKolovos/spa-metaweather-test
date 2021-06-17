@@ -8,3 +8,26 @@ body {
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: white;
+	border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #073a60;
+	border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #073a60;
+}
