@@ -3,9 +3,12 @@
 }
 
 .weeklydata_container {
-	margin-top: 50px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: center;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	padding: 30px;
 }
 
 .dailystats {
@@ -15,9 +18,7 @@
 
 .currentdata_container {
 	display: flex;
-	justify-content: space-between;
-	margin-left: 18%;
-	margin-right: 18%;
+	justify-content: space-around;
 }
 
 .city_info {
