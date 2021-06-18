@@ -6,8 +6,6 @@
 	margin-top: 20px;
 	display: flex;
 	justify-content: center;
-	overflow-y: hidden;
-	overflow-x: scroll;
 	padding: 30px;
 }
 
@@ -19,9 +17,26 @@
 .currentdata_container {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 20px;
 }
 
 .city_info {
 	display: block;
 	justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+	.weeklydata_container {
+		overflow-y: hidden;
+		overflow-x: scroll;
+	}
+
+	.currentdata_container {
+		flex-direction: column;
+	}
+
+	.city_info {
+		margin-bottom: 30px;
+	}
 }

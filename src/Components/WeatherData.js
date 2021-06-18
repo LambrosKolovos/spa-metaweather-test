@@ -1,6 +1,5 @@
 import React from 'react'
 import '../CSS/WeatherData.css'
-import {RiSunCloudyLine} from 'react-icons/ri';
 import {WiHumidity} from 'react-icons/wi';
 import {AiOutlineCompass} from 'react-icons/ai';
 import {FiWind} from 'react-icons/fi';
@@ -8,11 +7,41 @@ import {WiWindy} from 'react-icons/wi'
 import DailyCard from './DailyCard'
 import Stat from './Stat.js'
 import { useState, useEffect } from 'react';
+import loadingImg from '../Assets/loading.png'
+import {FiSun} from 'react-icons/fi';
+import {TiWeatherPartlySunny} from 'react-icons/ti'
+import {WiRainWind} from 'react-icons/wi'
+import {FiCloudSnow} from 'react-icons/fi'
+import {WiDayThunderstorm} from 'react-icons/wi'
+import {BsCloud} from 'react-icons/bs'
 
-function WeatherData({data}) {
+
+const getIcon = (abbr, main) => {
+    switch(abbr){
+        case 'c':
+            return <FiSun size={main? 100 : 65} color='#daf5fa'/>
+        case 'hc':   
+            return <BsCloud size={main? 100 : 65} color='#daf5fa'/>
+        case 'lc':
+            return <TiWeatherPartlySunny size={main? 100 : 65} color='#daf5fa'/>
+        case 's':
+        case "lr":
+        case "hr":
+            return <WiRainWind size={main? 100 : 65} color='#daf5fa'/>
+        case 'sl':
+        case 'sn':
+        case  'h':
+            return <FiCloudSnow size={main? 100 : 65} color='#daf5fa'/>
+        case 't':
+            return <WiDayThunderstorm size={main? 100 : 65} color='#daf5fa'/>
+        default:
+            return ''
+    }
+}
+
+function WeatherData({data, isCelsius}) {
     const [weeklyData, setWeeklyData] = useState([]);
     const [infoIdx, setInfoIdx] = useState(0);
-
     useEffect(() => {
         setWeeklyData(weeklyData)
     }, [weeklyData])
@@ -22,19 +51,32 @@ function WeatherData({data}) {
         setInfoIdx(id);
     }
 
+    const convertToFahr = (deg) => {
+        return deg * 9/5 + 32;
+    }
+
+    const getDate = (date) => {
+       var dateStr = JSON.stringify(date);
+       return dateStr.slice(9,11) + " / " + dateStr.slice(6,8)
+    }
+
     return (
         <div>
             {data.consolidated_weather ?  <div className='weatherdata_container fade'>
             <div className='currentdata_container'>
                 <div className='city_info'>
-                    <div style={{fontSize: '40px', color: '#073a60'}}>{data.title}</div>
+                    <div style={{fontSize: '40px', color: '#073a60', textAlign: 'start'}}>
+                        {data.title}, <br/> {getDate(data.consolidated_weather[infoIdx].applicable_date)}
+                    </div>
                     <div style={{display: 'flex'}}>
-                        <RiSunCloudyLine size={80} color='#DAF5FA' /> <br/>
+                        {getIcon(data.consolidated_weather[infoIdx].weather_state_abbr, true)}
                         <div style={{marginLeft: '15px', color: '#073a60'}}>
-                            <div style={{fontSize: '40px'}}>
-                                { data.consolidated_weather ?  JSON.stringify(data.consolidated_weather[infoIdx].the_temp).slice(0,2): ''}
+                            <div style={{fontSize: '45px'}}>
+                                { isCelsius ? 
+                                    JSON.stringify(data.consolidated_weather[infoIdx].the_temp).slice(0,2) + "° C" :
+                                    convertToFahr(JSON.stringify(data.consolidated_weather[infoIdx].the_temp).slice(0,2)) + "° F" }
                             </div>
-                            <div> { data.consolidated_weather ?  data.consolidated_weather[0].weather_state_name: ''}</div>
+                            <div style={{textAlign: 'start'}}> {data.consolidated_weather[infoIdx].weather_state_name}</div>
                         </div>
                     </div>
                 </div>
@@ -51,18 +93,25 @@ function WeatherData({data}) {
             </div>
             <div className='weeklydata_container'>
                 {
-                    data.consolidated_weather ? data.consolidated_weather.map((item, idx) => {
+                    data.consolidated_weather.map((item, idx) => {
                         return <DailyCard 
-                            key={item.id} 
-                            max={item.max_temp}
-                            min={item.min_temp} 
-                            abbr={item.weather_state_abbr}
-                            onClick={()=> showInfo(idx)}
+                            key={item.id}
+                            selected={idx === infoIdx}
+                            date={getDate(item.applicable_date)}
+                            max={isCelsius ? item.max_temp : convertToFahr(item.max_temp)}
+                            min={isCelsius ? item.max_temp : convertToFahr(item.max_temp)} 
+                            icon={getIcon(item.weather_state_abbr)}
+                            suffix = {isCelsius ? "° C" : "° F"}
+                            onClick={()=> showInfo(idx)
+                            }
                         />
-                    }) : <div></div>
+                    })
                 }
             </div>
-        </div>:<div>Loading</div>}
+        </div>:<div className='placeholder_div'>
+                <img src={loadingImg} width="256" alt="loading"></img>
+                <div>Fetching weather...</div>
+        </div>}
         </div>
     )
 }

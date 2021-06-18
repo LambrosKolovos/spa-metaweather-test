@@ -8,7 +8,7 @@ function CityCard({name, lat, onClick}) {
             <div className='city_name'>
                 {name}
             </div>
-            <div>
+            <div className='city_cords'>
                 {lat} 
             </div>
         </div>

@@ -5,8 +5,25 @@
 	padding-bottom: 15px;
 	outline: none;
 	border: 1px solid #073a60;
-	width: 50%;
 	background-color: lightcyan;
-	border-radius: 30px;
+	width: 40%;
 	font-size: 18px;
+	border-right: none;
+	border-radius: 30px 0px 0px 30px;
+}
+
+.searchfield::placeholder {
+	opacity: 0.6;
+}
+
+.search_btn {
+	border: 1px solid #073a60;
+	background-color: lightcyan;
+	border-top-right-radius: 50%;
+	border-left: none;
+	border-bottom-right-radius: 50%;
+	padding: 15px;
+	padding-top: 13px;
+	font-size: 18px;
+	color: #073a60;
 }

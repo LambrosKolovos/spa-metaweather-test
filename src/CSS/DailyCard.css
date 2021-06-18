@@ -12,3 +12,9 @@
 .min_temp {
 	font-size: 15px;
 }
+
+.selected {
+	border: 1.5px solid #073a60;
+	transform: scale(1.1);
+	cursor: pointer;
+}

@@ -3,18 +3,18 @@
 	margin-top: 60px;
 	overflow-y: hidden;
 	overflow-x: scroll;
-	padding: 30px;
+	padding: 50px;
 	margin-left: 10%;
 	margin-right: 10%;
 }
 
 .city_card {
-	background: rgba(219, 252, 249, 0.2);
-	margin-right: 30px;
+	background: rgba(219, 252, 249, 0.25);
+	margin-right: 35px;
 	padding: 30px;
 	border-radius: 20px;
 	color: #073a60;
-	transition: 0.2s all ease-in;
+	transition: 0.2s all ease-in-out;
 }
 
 .city_card:hover {
@@ -26,4 +26,27 @@
 .city_name {
 	font-weight: 600;
 	margin-top: 15px;
+	white-space: nowrap;
+}
+
+.city_cords {
+	white-space: nowrap;
+	margin-top: 40px;
+}
+
+@media screen and (max-width: 1000px) {
+	.results_container {
+		flex-direction: column;
+		overflow-x: hidden;
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+
+	.city_card {
+		margin-top: 20px;
+	}
+
+	.currentdata_container {
+		margin-top: 50px;
+	}
 }
